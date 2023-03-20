@@ -24,6 +24,21 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `orders`
+--
+
+CREATE TABLE `orders` (
+  `order_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `item_id` int(11) NOT NULL,
+  `item_qty` int(11) NOT NULL,
+  `date_ordered` date NOT NULL DEFAULT current_timestamp(),
+  `order_status` char(1) NOT NULL DEFAULT 'P' COMMENT 'P = Pending / D = Delivered\r\n'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `products`
 --
 
@@ -40,9 +55,9 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`item_id`, `item_name`, `item_price`, `item_status`, `last_update_ts`) VALUES
-(1, 'abcd', 90, 'A', '2023-03-09 10:05:52'),
-(2, 'xyz', 45, 'A', '2023-03-09 10:25:29'),
-(10, 'kit-kat', 20, 'I', '2023-03-14 10:06:24');
+(1, 'kimchi jigae', 180, 'A', '2023-03-09 10:05:52'),
+(2, 'jjajamyeon', 30, 'A', '2023-03-09 10:25:29'),
+(10, 'jjampong', 75, 'A', '2023-03-14 10:06:24');
 
 -- --------------------------------------------------------
 
@@ -73,6 +88,12 @@ INSERT INTO `users` (`user_id`, `username`, `password`, `fullname`, `user_stats`
 --
 
 --
+-- Indexes for table `orders`
+--
+ALTER TABLE `orders`
+  ADD PRIMARY KEY (`order_id`);
+
+--
 -- Indexes for table `products`
 --
 ALTER TABLE `products`
@@ -87,6 +108,12 @@ ALTER TABLE `users`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `orders`
+--
+ALTER TABLE `orders`
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `products`
